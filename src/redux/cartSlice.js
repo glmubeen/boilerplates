@@ -12,7 +12,9 @@ const cartSlice = createSlice({
                 }
             })
             if (ind == -1) {
-                state.push({ ...action.payload, ...action.payload.qty + 1 })
+                let temp = { ...action.payload };
+                temp.qty = temp.qty + 1
+                state.push(temp)
             } else {
                 state[ind].qty = state[ind].qty + 1
             }

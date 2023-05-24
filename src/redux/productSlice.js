@@ -2,25 +2,11 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const productSlice = createSlice({
     name: 'product',
-    initialState: [{
-        id: '1', title: 'Apple Iphone 13 pro max',
-        price: '$1000',
-        img: 'https://d3cd3hu9wl72jo.cloudfront.net/1.d/preview/1/d/1dc79580_887544f7_14Pro-DeepPurple.png',
-        qty: 0
-    },
-    {
-        id: '2', title: 'Apple Iphone 13 pro max',
-        price: '$1000',
-        img: 'https://d3cd3hu9wl72jo.cloudfront.net/1.d/preview/1/d/1dc79580_887544f7_14Pro-DeepPurple.png',
-        qty: 0
-    },
-    {
-        id: '3', title: 'Apple Iphone 13 pro max',
-        price: '$1000',
-        img: 'https://d3cd3hu9wl72jo.cloudfront.net/1.d/preview/1/d/1dc79580_887544f7_14Pro-DeepPurple.png',
-        qty: 0
-    },],
+    initialState: [],
     reducers: {
+        setProduct(state, action) {
+            return state = action.payload
+        },
         increaseQty(state, action) {
             let ind = -1;
             state.map((item, index) => {
@@ -47,5 +33,5 @@ const productSlice = createSlice({
     }
 })
 
-export const { increaseQty, decreaseQty } = productSlice.actions;
+export const { increaseQty, decreaseQty, setProduct } = productSlice.actions;
 export default productSlice.reducer

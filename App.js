@@ -1,20 +1,23 @@
-import { StyleSheet } from 'react-native'
-import React from 'react'
+import React from 'react';
 import { NavigationContainer, } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import MainStack from './src/navigation/MainStack'
-import AuthStack from './src/navigation/AuthStack'
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
+import AuthStack from './src/navigation/AuthStack';
+import DrawerStack from './src/navigation/DrawerStack';
+import persistStore from 'redux-persist/es/persistStore';
+import { PersistGate } from 'redux-persist/integration/react';
+let persistor = persistStore(store);
 
 const App = () => {
-    let user = null;
+    let user = undefined;
 
     return (
         <Provider store={store}>
-            <NavigationContainer>
-                {!user ? <MainStack /> : <AuthStack />}
-            </NavigationContainer>
+            <PersistGate persistor={persistor}>
+                <NavigationContainer>
+                    {!user ? <DrawerStack /> : <AuthStack />}
+                </NavigationContainer>
+            </PersistGate>
         </Provider>
     )
 }
